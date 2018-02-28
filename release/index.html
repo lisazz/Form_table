@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/bootstrap-ad6381ebfa.css">
+    <title>Document</title>
+    <style media="screen">
+      .showSubValues {
+        background: #f5f5f5;
+      }
+    </style>
+</head>
+
+<body>
+  <form role="form" method="post" id="form">
+    <div class="safe-defined-model">
+      <div class="value-group">
+        <div class="form-group">
+          <div class="col-md-12">
+              <table  class="table table-bordered form-table">
+                <thead>
+                  <tr>
+                    <th class="col-md-1">字段</th>
+                    <th class="col-md-1">类型</th>
+                    <th class="col-md-1">index</th>
+                    <th class="col-md-1">注释</th>
+                    <th class="col-md-1">Arks标识</th>
+                    <th class="col-md-1">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <input type="text" name="value.name" class="form-control" placeholder="name">
+                    </td>
+                    <td>
+                      <select name="value.type" class="form-control">
+                        <option value="">-请选择-</option>
+                        <option value="LONG">LONG</option>
+                        <option value="FLOAT">FLOAT</option>
+                        <option value="DOUBLE">DOUBLE</option>
+                        <option value="STRING">STRING</option>
+                        <option value="DATE">DATE</option>
+                        <option value="OBJECT">OBJECT</option>
+                        <option value="ENUM">ENUM</option>
+                        <option value="EXTERN">EXTERN</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type="number" min="0" name="value.index" class="form-control" placeholder="index">
+                    </td>
+                    <td>
+                      <input type="text" name="value.comment" class="form-control" placeholder="comment">
+                    </td>
+                    <td>
+                      <select name="value.arksType" class="form-control">
+                        <option value="None">None</option>
+                        <option value="UserId">UserId</option>
+                        <option value="ItemId">ItemId</option>
+                        <option value="ItemFeature">ItemFeature</option>
+                        <option value="SceneFeature">SceneFeature</option>
+                        <option value="SubItemId">SubItemId</option>
+                        <option value="SubItemFeature">SubItemFeature</option>
+                        <option value="ArksScore">ArksScore</option>
+                      </select>
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group value-plus-row">
+      <div class="fa-item col-md-3 col-md-offset-1 value-plus">
+        <i class="fa fa-plus"></i> 增加字段
+      </div>
+    </div>
+    <div class="form-actions">
+      <div class="col-md-offset-2">
+        <button type="button" name="submit" class="btn blue btn-lg">提交</button>
+      </div>
+    </div>
+  </form>
+
+</body>
+
+</html>
+
+<!-- 注入依赖 -->
+<script src="./js/jquery-3-e071abda8f.1.1.min.js" charset="utf-8"></script>
+<script src="./js/bootstrap-d5a03d9cca.js" charset="utf-8"></script>
+<script src="./js/handlebars-v3-2d32aaf6a8.0.0.js" charset="utf-8"></script>
+<script src="./js/superHandlevars-8e5a794d63.js" charset="utf-8"></script>
+<script src="./js/form-submit-135d01b1e1.js" charset="utf-8"></script>
+<script src="./js/schemaForm-4871cc1b2f.js" charset="utf-8"></script>
+
+<!-- 模板 -->
+<script id="addtbody" type="text/x-handlebars-template">
+  <tbody>
+    <tr>
+      <td>
+        <input type="text" name="value.name" class="form-control" placeholder="name">
+      </td>
+      <td>
+        <select name="value.type" class="form-control">
+          <option value="">-请选择-</option>
+          <option value="LONG">LONG</option>
+          <option value="FLOAT">FLOAT</option>
+          <option value="DOUBLE">DOUBLE</option>
+          <option value="STRING">STRING</option>
+          <option value="DATE">DATE</option>
+          <option value="OBJECT">OBJECT</option>
+          <option value="ENUM">ENUM</option>
+          <option value="EXTERN">EXTERN</option>
+        </select>
+      </td>
+      <td>
+        <input type="number" min="0" name="value.index" class="form-control" placeholder="index">
+      </td>
+      <td>
+        <input type="text" name="value.comment" class="form-control" placeholder="comment">
+      </td>
+      <td>
+        <select name="value.arksType" class="form-control">
+          <option value="None">None</option>
+          <option value="UserId">UserId</option>
+          <option value="ItemId">ItemId</option>
+          <option value="ItemFeature">ItemFeature</option>
+          <option value="SceneFeature">SceneFeature</option>
+          <option value="SubItemId">SubItemId</option>
+          <option value="SubItemFeature">SubItemFeature</option>
+          <option value="ArksScore">ArksScore</option>
+        </select>
+      </td>
+      <td>
+          <a class="delValue" href="javascript:;">
+            <i class="fa fa-minus"></i>删除
+          </a>
+      </td>
+    </tr>
+  </tbody>
+</script>
+<script type="text/x-handlebars-template" id="obj">
+  <tr class="showSubValues">
+    <td colspan="10">
+      <div class="object-type-div ">
+          <div class="form-group combine-value-first col-md-offset-1 col-md-11">
+              <label class="col-md-2 control-label">
+                <input
+                {{#if this.obj_array_separator }}
+                  checked="true"
+                {{/if}}
+                type="checkbox"
+                name="obj-array-chk-box">
+                <span>是否对象数组</span>
+              </label>
+              <div
+              class="col-md-2 object-array-separator-div"
+              {{#if this.obj_array_separator }}
+              style="display:block"
+              {{else}}
+              style="display:none"
+              {{/if}}
+              >
+                  <input
+                  type="text"
+                  value="{{ this.obj_array_separator }}"
+                  name="obj_array_separator"
+                  class="form-control"
+                  placeholder="对象数组分隔符">
+              </div>
+              <div class="col-md-2">
+                  <input
+                  type="text"
+                  value="{{ this.tuple_separator }}"
+                  name="tuple_separator"
+                  class="form-control"
+                  placeholder="一层分隔符">
+              </div>
+              <div class="col-md-2">
+                  <input
+                  type="text"
+                  value="{{ this.segment_separator }}"
+                  name="segment_separator"
+                  class="form-control"
+                  placeholder="二层分隔符">
+              </div>
+          </div>
+          {{#each this.combine_value}}
+            <div class="form-group combine-value-div col-md-11">
+              {{#ifCond @index 0}}
+                <label class="col-md-1 col-md-offset-2 control-label">子字段</label>
+              {{else}}
+                <div class="fa-item col-md-1 col-md-offset-1 combine-value-minus" style="text-align:right;">
+                  <i class="fa fa-minus pull-right"></i> 删除
+                </div>
+                <label class="col-md-1 control-label">子字段</label>
+              {{/ifCond}}
+              <div class="col-md-2" style="width: 10%;">
+                  <input
+                  type="text"
+                  name="value.value.name"
+                  value="{{ this.name }}"
+                  class="form-control"
+                  placeholder="可根据业务含义自行定义">
+              </div>
+              <label class="col-md-1 control-label">类型</label>
+              <div class="col-md-2" style="width: 10%;">
+                  <select name="value.value.type" class="form-control">
+                    <option value="">-请选择-</option>
+                    <option value="INT">INT</option>
+                    <option value="LONG">LONG</option>
+                    <option value="FLOAT">FLOAT</option>
+                    <option value="DOUBLE">DOUBLE</option>
+                    <option value="STRING">STRING</option>
+                    <option value="DATE">DATE</option>
+                    <option value="EXTERN">EXTERN</option>
+                  </select>
+              </div>
+              <label class="col-md-1 control-label">注释</label>
+              <div class="col-md-2" style="width: 10%;">
+                  <input
+                  type="text"
+                  name="value.value.comment"
+                  value="{{ this.comment }}"
+                  class="form-control"
+                  placeholder="comment">
+              </div>
+              <label class="col-md-1 control-label" style="width: 10%;">Arks标识</label>
+              <div class="col-md-2" style="width: 10%;">
+                  <select name="value.value.arksType" class="form-control">
+                    <option value="None">None</option>
+                    <option value="UserId">UserId</option>
+                    <option value="ItemId">ItemId</option>
+                    <option value="ItemFeature">ItemFeature</option>
+                    <option value="SceneFeature">SceneFeature</option>
+                    <option value="SubItemId">SubItemId</option>
+                    <option value="SubItemFeature">SubItemFeature</option>
+                    <option value="ArksScore">ArksScore</option>
+                  </select>
+              </div>
+              <div class="form-group value-extern-div col-md-12 col-md-offset-1"
+              {{#ifCond this.type "EXTERN" }}
+                style="margin-top:15px;display:block"
+              {{else}}
+                style="margin-top:15px;display:none"
+              {{/ifCond}}
+              >
+                  <label class="col-md-1 col-md-offset-2 control-label">数据源</label>
+                  <div class="col-md-2">
+                    <input
+                    class="form-control"
+                    name="value.sourceName"
+                    value="{{ this.sourceName }}"
+                    placeholder="数据源名称">
+                  </div>
+                  <label class="col-md-1 col-md-offset-1 control-label">key名称</label>
+                  <div class="col-md-2">
+                    <input class="form-control" name="value.keyName" value="{{ this.keyName }}">
+                  </div>
+              </div>
+          </div>
+          {{/each}}
+
+          <!-- 加号 -->
+          <div class="form-group combine-value-plus-row">
+              <div class="fa-item col-md-3 col-md-offset-2 combine-value-plus"> <i class="fa fa-plus"></i> 增加子字段 </div>
+          </div>
+      </div>
+    </td>
+  </tr>
+</script>
+<script type="text/x-handlebars-template" id="subEnum">
+  <tr class="showSubValues">
+    <td colspan="10">
+      <div class="enum-type-div">
+        {{#each enums}}
+          <div class="form-group value-enum-div col-md-12">
+          <!-- 删除 -->
+          {{#ifCond @index 0}}
+            <label class="col-md-1 col-md-offset-2 control-label">枚举值</label>
+          {{else}}
+            <div class="fa-item col-md-1 col-md-offset-1 enum-value-minus">
+              <i class="fa fa-minus pull-right"></i>删除
+            </div>
+            <label class="col-md-1 control-label">枚举值</label>
+          {{/ifCond}}
+
+          <div class="col-md-4">
+            <input class="form-control" name="value.enum" value={{this.value}}>
+          </div>
+        </div>
+        {{/each}}
+
+        <!-- 加号 -->
+        <div class="form-group enum-value-plus-row">
+          <div class="fa-item col-md-3 col-md-offset-2 enum-value-plus">
+            <i class="fa fa-plus"></i> 增加enum值 </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</script>
+<script type="text/x-handlebars-template" id="subExtern">
+  <tr  class="showSubValues">
+    <td colspan="10">
+      <div class="form-group value-extern-div col-md-12">
+        <label class="col-md-1 col-md-offset-2 control-label">数据源</label>
+        <div class="col-md-2">
+          <input class="form-control" name="value.sourceName" placeholder="数据源名称" value="{{ this.sourceName }}" >
+        </div>
+        <label class="col-md-1 control-label">key名称</label>
+        <div class="col-md-2">
+          <input class="form-control" name="value.keyName" value="{{ this.keyName }}" >
+        </div>
+      </div>
+    </td>
+  </tr>
+</script>
+<script type="text/x-handlebars-template" id="subValue">
+  <div class="form-group combine-value-div col-md-11">
+      <div class="fa-item col-md-1 col-md-offset-1 combine-value-minus" style="text-align:right;">
+        <i class="fa fa-minus pull-right"></i> 删除
+      </div>
+      <label class="col-md-1 control-label">子字段</label>
+      <div class="col-md-2" style="width: 10%;">
+          <input type="text" name="value.value.name" class="form-control" placeholder="可根据业务含义自行定义">
+      </div> <label class="col-md-1 control-label">类型</label>
+      <div class="col-md-2" style="width: 10%;">
+          <select name="value.value.type" class="form-control">
+            <option value="">-请选择-</option>
+            <option value="INT">INT</option>
+            <option value="LONG">LONG</option>
+            <option value="FLOAT">FLOAT</option>
+            <option value="DOUBLE">DOUBLE</option>
+            <option value="STRING">STRING</option>
+            <option value="DATE">DATE</option>
+            <option value="EXTERN">EXTERN</option>
+          </select>
+      </div>
+      <label class="col-md-1 control-label">注释</label>
+      <div class="col-md-2" style="width: 10%;">
+          <input type="text" name="value.value.comment" class="form-control" placeholder="comment">
+      </div>
+      <label class="col-md-1 control-label" style="width: 10%;">Arks标识</label>
+      <div class="col-md-2" style="width: 10%;">
+          <select name="value.value.arksType" class="form-control">
+            <option value="None">None</option>
+            <option value="UserId">UserId</option>
+            <option value="ItemId">ItemId</option>
+            <option value="ItemFeature">ItemFeature</option>
+            <option value="SceneFeature">SceneFeature</option>
+            <option value="SubItemId">SubItemId</option>
+            <option value="SubItemFeature">SubItemFeature</option>
+            <option value="ArksScore">ArksScore</option>
+          </select>
+      </div>
+      <div class="form-group value-extern-div col-md-12 col-md-offset-1" style="margin-top:15px;display:none">
+          <label class="col-md-2 col-md-offset-2 control-label">数据源</label>
+          <div class="col-md-2"> <input class="form-control" name="value.sourceName" placeholder="数据源名称">
+          </div>
+          <label class="col-md-1 col-md-offset-2 control-label">key名称</label>
+          <div class="col-md-2"> <input class="form-control" name="value.keyName">
+          </div>
+      </div>
+  </div>
+</script>
+<script type="text/x-handlebars-template" id="enum">
+  <div class="form-group value-enum-div col-md-12">
+    <div class="fa-item col-md-1 col-md-offset-1 enum-value-minus">
+      <i class="fa fa-minus pull-right"></i>删除
+    </div>
+    <label class="col-md-1 control-label">枚举值</label>
+    <div class="col-md-4">
+      <input class="form-control" name="value.enum">
+    </div>
+  </div>
+</script>
